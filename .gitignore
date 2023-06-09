@@ -140,3 +140,4 @@ dataset/
 
 app/static/uploads/
 app/seg_models/SAM/
+app/creds.py
