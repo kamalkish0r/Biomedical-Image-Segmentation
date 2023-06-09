@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- For jquery.min.js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- For dropzone.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.js"></script>
+
+  <!-- For dropzone.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  {% if title %}
+    <title>Image Segmentation - {{ title }}</title>
+  {% else %}
+    <title>Image Segmentation</title>
+  {% endif %}
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for ('main') }}">Segment Images</a></li>
+      <li><a href="{{ url_for ('main') }}">Home</a></li>
+    </ul>
+  </nav>
+
+  <div class="col-md-8">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if
+        messages %}
+        {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+  {% block content %}{% endblock content %}
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Segmentation App</title>
+   
+    <!-- For jquery.min.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- For dropzone.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.js"></script>
+
+    <!-- For dropzone.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+</head>
+<body>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for ('main.home') }}">Segment Images</a></li>
+        <li><a href="{{ url_for ('main.home') }}">Home</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+        <h1>Image Segmentation App</h1>
+        <form action='/' method="POST" enctype="multipart/form-data">
+            <div class="model-choice">
+              <label for="model">Select segmentation model: </label>
+              <select id="model" name="model">
+                  <option value="Unet">Unet</option>
+                  <option value="Linknet">Linknet</option>
+              </select>
+            </div>
+            <div class="input-image">
+              <label for="input-img-btn">Select an Image: </label>
+              <input type='file' name='img' id='input-img-btn'>
+            </div>
+            <button type="submit">Segment Image</button>
+        </form>
+
+        {% if input_img %}
+          <div class="show-results" id='uploaded_image'>
+            <div class="original-img result">
+              <label for="input-img">Original Image</label>
+              <img src="{{ url_for('static', filename='uploads/' + input_img) }}" alt="Not found" id="input-img">
+            </div>
+
+            <div class="segmented-img result">
+              <label for="seg-img">Segmented Image</label>
+              <img src="{{ url_for('static', filename='uploads/' + seg_img) }}" alt="Not found" id="seg-img">
+            </div>
+         </div>
+        {% else %}
+          <h4>No Input Image</h4>
+        {% endif %}
+    </div>
+   
+</body>
+</html>

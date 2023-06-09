@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+
+
+dataset/
+# models/
+
+
+
+
+app/static/uploads/
+app/seg_models/SAM/
+app/creds.py
